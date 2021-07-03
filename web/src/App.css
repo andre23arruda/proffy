@@ -1,0 +1,95 @@
+/* poppins-regular - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/poppins/poppins-v15-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('./fonts/poppins/poppins-v15-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/poppins/poppins-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./fonts/poppins/poppins-v15-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('./fonts/poppins/poppins-v15-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('./fonts/poppins/poppins-v15-latin-regular.svg#Poppins') format('svg'); /* Legacy iOS */
+}
+
+:root {
+  --background-color: #8257E5;
+  --green: #04D361;
+  --purple: #9871F5;
+  --purple-text: #D4C2FF;
+  --title-color: #322153;
+  --text-color: #6C6C80;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #F0F0F5;
+  -webkit-font-smoothing: antialiased;
+  color: var(--text-color);
+}
+
+body, input, button {
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--title-color);
+  font-family: Poppins;
+}
+
+.btn {
+	padding: 20px 30px;
+	border-radius: 5px;
+	border: none;
+	color: #fff;
+	transition: 0.2s;
+	flex-direction: column;
+	align-items: flex-end;
+	text-decoration: none;
+}
+
+.btn.btn-purple {
+	background-color: var(--purple);
+	margin-right: 20px;
+}
+
+.btn.btn-green {
+	background-color: var(--green)
+}
+
+.btn:hover,
+button:hover {
+  filter: brightness(0.9);
+  cursor: pointer;
+}
+
+.btn svg {
+	vertical-align: middle;
+}
+
+.purple-text {
+  color: var(--purple-text);
+}
+
+.purple-text-strong {
+  color: var(--title-color);
+}
+
+
+/* custom select arrow */
+select {
+    -webkit-appearance: none;
+    background-image: linear-gradient(
+    45deg
+    , transparent 50%, gray 50%), linear-gradient(
+    135deg
+    , gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
+    background-position: calc(100% - 20px) calc(1em + 8px), calc(100% - 15px) calc(1em + 8px), calc(100% - 2.5em) 1em;
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-repeat: no-repeat;
+}

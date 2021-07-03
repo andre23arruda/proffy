@@ -1,0 +1,237 @@
+#create-class-page .content {
+	width: 100%;
+	max-width: 800px;
+ 	margin: 0 auto;
+}
+
+#create-class-page .content form {
+	background-color: #fff;
+	padding-top: 20px;
+	transform: translateY(-40px);
+	border-radius: 10px;
+	margin: 10px;
+}
+
+#create-class-page fieldset {
+	border: none;
+	margin-top: 20px;
+}
+
+#create-class-page fieldset legend {
+	width: 100%;
+	max-width: 800px;
+}
+
+#create-class-page fieldset legend h2 {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	width: 90%;
+	margin: 10px 5%;
+	padding-bottom: 10px;
+	border-bottom: 1px solid rgba(204, 204, 204, 0.378);
+}
+
+#create-class-page fieldset legend h2 button {
+	background-color: transparent;
+	border: none;
+	font-size: 12pt;
+	font-weight: bold;
+	color: #8257E5;
+}
+
+#create-class-page .field-group {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+#create-class-page hr {
+	margin: 0 5%;
+	border: 0.1px solid #ffffff29;
+	background-color: #a8a8a829;
+}
+
+
+#create-class-page .field {
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	margin: 10px 5% 15px;
+}
+
+#create-class-page .field label {
+	font-size: 10pt;
+	color: #9C98A6;
+	margin-bottom: 5px;
+}
+
+#create-class-page .field label span {
+	font-size: 8pt;
+	color: #C1BCCC;
+}
+
+#create-class-page .field.no-margin:not(:last-child)  {
+	margin-right: 2%;
+}
+
+#create-class-page .field input,
+#create-class-page .field textarea,
+#create-class-page .field select {
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	background-color: #FAFAFC;
+	border: 1px solid #E6E6F0;
+	height: 45px;
+}
+
+::placeholder {
+	color: rgba(124, 124, 124, 0.474);
+	opacity: 1;
+}
+
+#create-class-page .field textarea {
+	resize: vertical;
+	min-height: 85px;
+}
+
+#create-class-page .field.avatar {
+	width: 15%;
+}
+
+#create-class-page label#avatar {
+    margin-bottom: 20px;
+    border: 1px dashed #ddd;
+    background-size: cover;
+    cursor: pointer;
+    height: 85px;
+    width: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	border-radius: 50%;
+}
+
+#create-class-page label#avatar.has-preview {
+    border: none;
+}
+
+#create-class-page label#avatar input {
+    display: none;
+}
+
+#create-class-page footer {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+	padding: 30px 5%;
+	background-color: #FAFAFA;
+	border-top: 1px solid rgba(204, 204, 204, 0.378);
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+#create-class-page footer span {
+	display: flex;
+	align-items: center;
+}
+
+#create-class-page footer span p {
+	font-size: 9pt;
+	color: #A0A0B2;
+}
+
+#create-class-page footer span svg {
+	margin-right: 10px;
+}
+
+#create-class-page footer button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+	font-size: 11pt;
+}
+
+
+/* Mensagem de cadastro realizado */
+.popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: #8257e5e1;
+	z-index: 20000;
+}
+
+.popup .popup-inner {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	align-items: center;
+	height: 100%;
+	align-content: center;
+	justify-content: center;
+}
+
+.popup h1 {
+	margin-top: 20px;;
+	text-align: center;
+	color: white;
+}
+
+.alert-enter {
+	opacity: 0;
+	transform: scale(0.9);
+}
+
+.alert-enter-active {
+	opacity: 1;
+	transform: translateX(0);
+	transition: opacity 400ms, transform 400ms;
+}
+
+.alert-exit {
+	opacity: 1;
+}
+
+.alert-exit-active {
+	opacity: 0;
+	transform: scale(0.9);
+	transition: opacity 400ms, transform 400ms;
+}
+
+
+@media(max-width: 800px) {
+	#create-class-page .field-group {
+		flex-direction: column;
+		width: 100%;
+	}
+}
+
+@media(max-width: 500px) {
+	#create-class-page footer {
+		flex-direction: column;
+	}
+
+	#create-class-page footer button {
+		margin-top: 20px;
+	}
+
+	#create-class-page label#avatar {
+		height: 170px;
+		width: 170px;
+	}
+
+	.popup-inner {
+		flex-direction: column;
+	}
+	.popup-inner h1 {
+		margin: 20px 0;
+		text-align: center;
+		font-size: 13pt;
+	}
+}

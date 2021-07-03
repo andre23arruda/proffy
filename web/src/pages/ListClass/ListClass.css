@@ -1,0 +1,154 @@
+#list-class-page .content {
+	width: 100%;
+	max-width: 800px;
+ 	margin: 0 auto;
+	transform: translateY(-60px);
+}
+
+#list-class-page .content form {
+	border-radius: 10px;
+	margin: 10px;
+}
+
+#list-class-page .content .field-group {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+}
+
+#list-class-page .content .field {
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+}
+
+#list-class-page .content .field input,
+#list-class-page .content .field select {
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	background-color: #fff;
+	height: 45px;
+}
+
+
+#list-class-page .content .cards-group .card {
+	background-color: #fff;
+	margin: 10px;
+	border-radius: 20px;
+}
+
+#list-class-page .content .cards-group .card header {
+	background-color: transparent;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	padding: 3% 5% 0%;
+}
+
+#list-class-page .content .cards-group .card header img {
+	width: 100px;
+	margin-right: 10%;
+	border-radius: 50%;
+}
+
+#list-class-page .content .cards-group .card main {
+	padding: 2% 5% 5%;
+
+}
+
+#list-class-page footer {
+	display: flex;
+	justify-content: space-between;
+	padding: 30px 0;
+	background-color: #FAFAFA;
+	border-top: 1px solid rgba(204, 204, 204, 0.378);
+	padding: 5%;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+#list-class-page footer div {
+	display: flex;
+	align-items: center;
+}
+
+#list-class-page footer div span {
+	margin-right: 10px;
+}
+
+#list-class-page footer span p {
+	font-size: 12pt;
+}
+
+#list-class-page footer span svg {
+	margin-right: 10px;
+}
+
+#list-class-page footer button {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+	font-size: 11pt;
+}
+
+#list-class-page footer button svg {
+	align-self: center;
+}
+
+@media(max-width: 600px) {
+
+	#list-class-page .content .field-group {
+		flex-direction: column;
+		width: 100%;
+	}
+
+	#list-class-page .content .field {
+		width: 100%;
+	}
+
+	header h1 {
+		font-size: 1.2rem;
+	}
+
+	header h2 {
+		font-size: 1.1rem;
+	}
+
+	#list-class-page .field.no-margin  {
+		margin-bottom: 10px;
+	}
+
+	#list-class-page label.purple-text  {
+		font-size: 0.8rem;
+	}
+
+	#list-class-page .field.no-margin:not(:first-child) label.purple-text  {
+		color: var(--background-color);
+	}
+
+	#list-class-page .content .cards-group .card header img {
+		width: 30%;
+	}
+
+	#list-class-page .content .cards-group .card main p,
+	#list-class-page footer * {
+		font-size: 0.8rem;
+	}
+}
+
+
+@media(max-width: 450px) {
+	#list-class-page footer,
+	#list-class-page footer div {
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	#list-class-page footer button {
+		margin-top: 20px;
+	}
+}
