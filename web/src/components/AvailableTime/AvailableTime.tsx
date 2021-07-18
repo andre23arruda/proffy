@@ -1,5 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react'
 
+import { Dropdown } from 'react-dropdown-now'
+
 
 interface ScheduleProps {
 	week_day: number
@@ -13,9 +15,10 @@ interface AvailableTimeProps {
     setScheduleInfo: Dispatch<SetStateAction<ScheduleProps[]>>
 }
 
+
 const AvailableTime: React.FC<AvailableTimeProps> = (props) => {
-    function handleSetWeekDay(value: string){
-        props.schedule_info[props.index].week_day = parseInt(value)
+    function handleSetWeekDay(selectedOption: any){
+        props.schedule_info[props.index].week_day = parseInt(selectedOption.value)
         props.setScheduleInfo(props.schedule_info)
     }
     function handleSetTimeStart(value: string){
@@ -33,13 +36,18 @@ const AvailableTime: React.FC<AvailableTimeProps> = (props) => {
         <div className="field-group">
             <div className="field no-margin">
                 <label htmlFor="week_day">Dia da semana</label>
-                <select onChange={ event => handleSetWeekDay(event.target.value) }>
-                    <option value="1">Segunda</option>
-                    <option value="2">Terça</option>
-                    <option value="3">Quarta</option>
-                    <option value="4">Quinta</option>
-                    <option value="5">Sexta</option>
-                </select>
+                <Dropdown
+                    placeholder="Select an option"
+                    options={[
+                        { label: 'Segunda', value: '1' },
+                        { label: 'Terça',   value: '2' },
+                        { label: 'Quarta',  value: '3' },
+                        { label: 'Quinta',  value: '4' },
+                        { label: 'Sexta',   value: '5' },
+                    ]}
+                    value="1"
+                    onSelect={(value) => handleSetWeekDay(value)}
+                />
             </div>
 
             <div className="field no-margin">

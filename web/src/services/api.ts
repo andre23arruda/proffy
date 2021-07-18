@@ -1,4 +1,4 @@
-const API_URL = `192.168.0.20:8000`
+const API_URL = `192.168.0.26:8000`
 
 const baseUrl = `http://${ API_URL }/api/nlw2/`
 

@@ -2,11 +2,13 @@ import React, { ChangeEvent, useEffect, useMemo, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
+import { Dropdown } from 'react-dropdown-now'
+import 'react-dropdown-now/style.css'
+
 import { FiAlertCircle, FiCamera, FiCheckCircle } from 'react-icons/fi'
 
 import { getApi, postFormDataApi } from '../../services/api'
 import { title } from '../../utils'
-
 
 import './CreateClass.css'
 import Header from '../../components/Header/Header'
@@ -62,8 +64,8 @@ function CreateClass() {
     function handleSetBio(value: string){
         setBio(value)
     }
-    function handleSetSubject(value: string){
-        setSubject(value)
+    function handleSetSubject(selectedOption: any){
+        setSubject(selectedOption.value)
     }
     function handleSetCost(value: string){
         setCost(value)
@@ -160,7 +162,6 @@ function CreateClass() {
                             </div>
 
                         </div>
-
                     </fieldset>
 
                     <fieldset>
@@ -170,11 +171,12 @@ function CreateClass() {
 
                         <div className="field">
                             <label htmlFor="subject">Matéria</label>
-                            <select placeholder="Selecione qual você quer ensinar" onChange={ event => handleSetSubject(event.target.value) }>
-                                { subjectList.map((subject) =>
-                                    <option key={ subject.id } value={ subject.id }>{ subject.name }</option>
-                                )}
-                            </select>
+                            <Dropdown
+                                placeholder="Select an option"
+                                options={ subjectList.map(subject => ({ label: subject.name, value: subject.id } ))}
+                                value={ subjectList.length > 0 ? subjectList[0].id : '' }
+                                onSelect={(value) => handleSetSubject(value)}
+                            />
                         </div>
 
                         <div className="field">

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
+import { Dropdown } from 'react-dropdown-now'
+import 'react-dropdown-now/style.css'
+
 import { FaWhatsapp } from 'react-icons/fa'
 
 import { getApi } from '../../services/api'
@@ -42,11 +45,11 @@ function ListClass() {
     async function handleTimeStart(name: string) {
         setTimeStart(name)
     }
-    function handleSetSubject(value: string){
-        setSubject(value)
+    function handleSetSubject(selectedOption: any){
+        setSubject(selectedOption.value)
     }
-    function handleSetWeekDay(value: string){
-        setWeekDay(value)
+    function handleSetWeekDay(selectedOption: any){
+        setWeekDay(selectedOption.value)
     }
 
     async function loadClasses() {
@@ -84,23 +87,29 @@ function ListClass() {
                 <form>
                     <div className="field-group">
                         <div className="field no-margin">
-                            <label className="purple-text" htmlFor="subject">Matéria</label>
-                            <select name="subject" id="week_day" onChange={ event => handleSetSubject(event.target.value) }>
-                                { subjectList.map((subject) =>
-                                    <option key={ subject.id } value={ subject.id }>{ subject.name }</option>
-                                )}
-                            </select>
+                            <label className="purple-text" htmlFor="subject">Matéria</label>´
+                            <Dropdown
+                                placeholder="Select an option"
+                                options={ subjectList.map(subject => ({ label: subject.name, value: subject.id } ))}
+                                value={ subjectList.length > 0 ? subjectList[0].id : '' }
+                                onSelect={(value) => handleSetSubject(value)} // always fires once a selection happens even if there is no change
+                            />
                         </div>
 
                         <div className="field no-margin">
                             <label className="purple-text" htmlFor="week_day">Dia da semana</label>
-                            <select name="week_day" id="week_day" onChange={ event => handleSetWeekDay(event.target.value) }>
-                                <option value="1">Segunda</option>
-                                <option value="2">Terça</option>
-                                <option value="3">Quarta</option>
-                                <option value="4">Quinta</option>
-                                <option value="5">Sexta</option>
-                            </select>
+                            <Dropdown
+                                placeholder="Select an option"
+                                options={[
+                                    { label: 'Segunda', value: '1' },
+                                    { label: 'Terça',   value: '2' },
+                                    { label: 'Quarta',  value: '3' },
+                                    { label: 'Quinta',  value: '4' },
+                                    { label: 'Sexta',   value: '5' },
+                                ]}
+                                value="1"
+                                onSelect={(value) => handleSetWeekDay(value)}
+                            />
                         </div>
 
                         <div className="field no-margin">

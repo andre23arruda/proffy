@@ -18,7 +18,7 @@ def get_python_path():
 
 def put_ip_in_api_file(folder: str):
     '''Put ip address in api.js'''
-    FILE_PATTERN = 'const ROTA_API'
+    FILE_PATTERN = 'const API_URL'
     file_path = fr'../{ folder }/src/services/api.ts'
 
     with open(file_path, 'r+') as f:
@@ -29,7 +29,7 @@ def put_ip_in_api_file(folder: str):
             if not line.startswith(FILE_PATTERN):
                 f.write(line)
             else:
-                f.write(f'{ FILE_PATTERN } = `{ get_ip_address() }`\n')
+                f.write(f'{ FILE_PATTERN } = `{ get_ip_address() }:{ PORT }`\n')
 
         f.truncate()
 
