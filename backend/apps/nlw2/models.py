@@ -3,7 +3,15 @@ from django.db import models
 
 WeekDays = models.IntegerChoices(
     'WeekDays',
-    'Sunday Monday Tuesday Wednesday Thursday Friday Saturday'
+    '''
+        Monday
+        Tuesday
+        Wednesday
+        Thursday
+        Friday
+        Saturday
+        Sunday
+    '''
 )
 
 
@@ -16,9 +24,9 @@ class Subject(models.Model):
 
 class Teacher(models.Model):
     name = models.CharField(max_length=50)
-    avatar = models.ImageField(upload_to='uploads/teacher/avatar/%Y/%m/%d/', null=True)
+    avatar = models.ImageField(upload_to='uploads/teacher/avatar/%Y/%m/%d/', blank=True, null=True)
     email = models.EmailField(max_length=254)
-    whatsapp = models.CharField(max_length=12)
+    whatsapp = models.CharField(max_length=16)
     bio = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -35,6 +43,10 @@ class Class(models.Model):
     def __str__(self):
         return f'{ self.subject } - RS{ self.cost }'
 
+    class Meta:
+        verbose_name = 'Class'
+        verbose_name_plural = 'Classes'
+
 
 class Schedule(models.Model):
     week_day = models.SmallIntegerField(choices=WeekDays.choices)
@@ -42,6 +54,9 @@ class Schedule(models.Model):
     time_start = models.IntegerField()
     time_end = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{ self.reference_class.teacher } - { self.reference_class }'
 
 
 class Connection(models.Model):

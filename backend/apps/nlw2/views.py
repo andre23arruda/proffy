@@ -1,6 +1,4 @@
-from django.shortcuts import get_object_or_404
-
-from rest_framework import viewsets, status, pagination
+from rest_framework import viewsets, status
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 import json
@@ -23,7 +21,7 @@ def schedule_map(schedule_info: list, reference_class: Class):
     schedule_info = json.loads(schedule_info)
     if schedule_info:
         for schedule in schedule_info:
-            obj = Schedule.objects.create(
+            Schedule.objects.create(
                 week_day=schedule['week_day'],
                 time_start=convert_hour_to_minutes(schedule['time_start']),
                 time_end=convert_hour_to_minutes(schedule['time_end']),
@@ -73,10 +71,17 @@ class ClassesViewSet(viewsets.ModelViewSet):
             teacher=teacher,
         )
 
-        schedule_map(form_data['schedule_info'], class_instance)
+        schedule_map(form_data['scheduleInfo'], class_instance)
 
         response = { 'message': 'Teacher, Class and Schedule created.' }
         return Response(response, status=status.HTTP_200_OK)
+
+
+class TeachersViewSet(viewsets.ModelViewSet):
+    '''API endpoint that allows Teachers to be viewed or edited'''
+    queryset = Teacher.objects.all()
+    serializer_class = TeacherSerializer
+    http_method_names = ['get',]
 
 
 class ConnectionsViewSet(viewsets.ModelViewSet):
@@ -86,7 +91,6 @@ class ConnectionsViewSet(viewsets.ModelViewSet):
 
     def list(self, request):
         queryset = Connection.objects.all()
-        serializer = ConnectionSerializer(queryset, many=True)
         return Response({'total': queryset.count()})
 
 

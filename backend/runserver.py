@@ -1,4 +1,4 @@
-import socket, subprocess, sys
+import os, socket, subprocess, sys
 
 PORT = '8000'
 
@@ -36,10 +36,13 @@ def put_ip_in_api_file(folder: str):
 
 def main():
     '''Run'''
-    subprocess.call(f'{ get_python_path() }\Scripts\python.exe manage.py runserver { get_ip_address() }:{ PORT }')
+    if os.name == 'posix': # linux/mac
+        subprocess.call(fr'{ get_python_path() }\bin\python manage.py runserver { get_ip_address() }:{ PORT }')
+    else: # windows
+        subprocess.call(fr'{ get_python_path() }\Scripts\python manage.py runserver { get_ip_address() }:{ PORT }')
 
 
 if __name__ == '__main__':
     put_ip_in_api_file('web')
-    # put_ip_in_api_file('mobile')
+    put_ip_in_api_file('mobile')
     main()

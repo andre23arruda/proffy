@@ -1,7 +1,7 @@
 #list-class-page .content {
 	width: 100%;
 	max-width: 800px;
- 	margin: 0 auto;
+	margin: 0 auto;
 	transform: translateY(-60px);
 }
 
@@ -25,6 +25,7 @@
 #list-class-page .content .field input,
 #list-class-page .content .field .rdn-control {
 	padding: 10px;
+	padding-left: 20px;
 	border: none;
 	border-radius: 5px;
 	background-color: #fff;
@@ -112,6 +113,10 @@
 	margin-right: 10px;
 }
 
+#list-class-page footer .email-link {
+	text-decoration: none;
+}
+
 #list-class-page footer button {
 	display: flex;
 	flex-direction: row;
@@ -123,6 +128,10 @@
 
 #list-class-page footer button svg {
 	align-self: center;
+}
+
+textarea:focus, input:focus{
+    outline: 3px solid #bfa5fc;
 }
 
 @media(max-width: 600px) {

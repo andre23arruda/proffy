@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.shortcuts import get_object_or_404
 from django.templatetags.static import static
 
 from rest_framework import serializers
@@ -84,20 +83,3 @@ class ConnectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Connection
         fields = '__all__'
-
-
-
-# class CollectPlaceSerializer(serializers.ModelSerializer):
-#     '''Collect Place Serializer'''
-
-#     item_list = serializers.SerializerMethodField()
-#     def get_item_list(self, obj):
-#         return [ item.name for item in obj.items.all() ]
-
-#     class Meta:
-#         model = CollectPlace
-#         fields = '__all__'
-
-#         extra_kwargs = {
-#             'items': {'write_only': True},
-#         }

@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { FiChevronLeft } from 'react-icons/fi'
-
-import { title } from '../../utils'
 
 import logoImg from '../../assets/logo.svg'
 import './Header.css'
@@ -14,9 +12,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = (props) => {
 
-    useEffect(() => title(document, 'Header'), [])
-
-  	return (
+    return (
         <header>
             <div className="header-logo">
                 <Link to="/">
@@ -36,7 +32,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             </div>
 
         </header>
-  	)
+    )
 }
 
 export default Header

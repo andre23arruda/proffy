@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native'
+import { colors } from '../../stylesGlobal'
+
 
 export default StyleSheet.create({
   container: {
@@ -6,7 +8,7 @@ export default StyleSheet.create({
     padding: 32,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#8257E5',
+    backgroundColor: colors.purple,
   },
 
   images: {
@@ -23,33 +25,31 @@ export default StyleSheet.create({
   },
 
   text: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 20,
     fontFamily: 'Ubuntu_500Medium',
     marginTop: 30,
     textAlign: 'left',
-    borderTopColor: '#fff',
+    borderTopColor: colors.white,
     marginLeft: 20
   },
 
   textBolder: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 25,
     fontFamily: 'Ubuntu_700Bold',
     textAlign: 'left',
-    borderTopColor: '#fff',
     marginLeft: 20
   },
 
-  footer: {
+  buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
     alignSelf: 'flex-start',
   },
 
-  buttonGreen: {
-    backgroundColor: '#34CB79',
+  button: {
     height: 60,
     flexDirection: 'row',
     borderRadius: 10,
@@ -59,15 +59,12 @@ export default StyleSheet.create({
     width: '45%',
   },
 
+  buttonGreen: {
+    backgroundColor: colors.green,
+  },
+
   buttonPurple: {
-    backgroundColor: '#9871F5',
-    height: 60,
-    flexDirection: 'row',
-    borderRadius: 10,
-    overflow: 'hidden',
-    alignItems: 'center',
-    marginTop: 8,
-    width: '45%',
+    backgroundColor: colors.anotherPurple,
   },
 
   buttonIcon: {
@@ -80,8 +77,18 @@ export default StyleSheet.create({
   buttonText: {
     flex: 1,
     textAlign: 'center',
-    color: '#FFF',
+    color: colors.white,
     fontFamily: 'Ubuntu_500Medium',
     fontSize: 16,
+  },
+
+  textFooter: {
+    textAlign: 'center',
+    marginTop: '20%',
+    width: '100%',
+    fontFamily: 'Roboto_400Regular',
+    color: colors.lightPurple
+
+
   }
 })

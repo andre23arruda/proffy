@@ -98,18 +98,18 @@
 	max-height: 400px;
 }
 
-.rdn-drop-menu-option:hover,
-.rdn-drop-menu-group-option:hover,
-.rdn-selection-menu-option:hover,
-.rdn-selection-menu-group-option:hover {
+#create-class-page .rdn-drop-menu-option:hover,
+#create-class-page .rdn-drop-menu-group-option:hover,
+#create-class-page .rdn-selection-menu-option:hover,
+#create-class-page .rdn-selection-menu-group-option:hover {
     background-color: #a37dfa;
     color: #fff;
 }
 
-.rdn-drop-menu-option.is-selected,
-.rdn-drop-menu-group-option.is-selected,
-.rdn-selection-menu-option.is-selected,
-.rdn-selection-menu-group-option.is-selected {
+#create-class-page .rdn-drop-menu-option.is-selected,
+#create-class-page .rdn-drop-menu-group-option.is-selected,
+#create-class-page .rdn-selection-menu-option.is-selected,
+#create-class-page .rdn-selection-menu-group-option.is-selected {
     background-color: #8257e5;
     color: #fff;
 }

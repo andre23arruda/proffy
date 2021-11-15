@@ -4,11 +4,17 @@ from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static # para servir mídia
 from rest_framework import routers
-from nlw2.views import ClassesViewSet, ConnectionsViewSet, SubjectsViewSet
+from nlw2.views import (
+    ClassesViewSet,
+    TeachersViewSet,
+    ConnectionsViewSet,
+    SubjectsViewSet
+)
 
 # router
 router = routers.DefaultRouter()
 router.register('nlw2/classes', ClassesViewSet, basename='Classes')
+router.register('nlw2/teachers', TeachersViewSet, basename='Teachers')
 router.register('nlw2/connections', ConnectionsViewSet, basename='Connections')
 router.register('nlw2/subjects', SubjectsViewSet, basename='Subjects')
 

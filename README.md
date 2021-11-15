@@ -48,7 +48,7 @@ python -m venv venv
 
 # Ativar o ambiente virtual
 . venv/Scripts/activate
-# ou source ./venv/Scripts/activate
+# ou ./venv/bin/activate
 
 # Instalar os pacotes necessários
 pip install -r requirements.txt
@@ -75,26 +75,38 @@ Usei o *Cloudinary* para salvar as imagens dos professores, mas não é necessá
 # Entrar na pasta dos arquivos do frontend
 cd web
 
-# Instalar os pacotes do projeto
+# Instalar os pacotes necessários
 yarn install
 
 # Rodar
 yarn start
 ```
 
-<h1 align="center">
-  <img alt="Web 1" src="./images/web_1.png" width="400px" />
-  <img alt="Web 2" src="./images/web_2.png" width="400px" />
-  <img alt="Web 3" src="./images/web_3.png" width="400px" />
-</h1>
+<div align="center">
+    <img alt="Home Page" title="Home Page" src="images/web_1.png?raw=true" width="400px" />
+</div>
+<p align="center">Home Page</p>
+<hr>
+
+<div align="center">
+    <img alt="Student Page" title="Student Page" src="images/web_2.png?raw=true" width="400px" />
+</div>
+<p align="center">Student Page</p>
+<hr>
+
+<div align="center">
+    <img alt="Teacher Page" title="Teacher Page" src="images/web_3.png?raw=true" width="400px" />
+</div>
+<p align="center">Teacher Page</p>
+<hr>
 
 ### Mobile
 #### No terminal, rodar
 ```sh
-# Entrar na pasta dos arquivos do frontend
+# Entrar na pasta dos arquivos do projeto mobile
 cd mobile
 
-# Instalar os pacotes do projeto
+# Instalar os pacotes necessários
 yarn install
 
 # Rodar
@@ -105,6 +117,24 @@ expo start
 - Abrir expo no celular
 - Ler QR code e executar o app
 
-<h1 align="center">
-    <img alt="Web 1" src="./images/mobile_1.png" width="800px" />
-</h1>
+<div align="center">
+    <img alt="Splash" title="Splash" src="images/mobile_1.jpg" width="200px" />
+    <img alt="On Boarding 1" title="On Boarding 1" src="images/mobile_2.jpg" width="200px" />
+    <img alt="On Boarding 2" title="On Boarding 2" src="images/mobile_3.jpg" width="200px" />
+</div>
+<p align="center">Splash Screen, On Boarding 1 and On Boarding 2</p>
+<hr>
+
+<div align="center">
+    <img alt="Home" title="Home" src="images/mobile_4.jpg" width="200px" />
+    <img alt="Be a Teacher" title="Be a Teacher" src="images/mobile_5.jpg" width="200px" />
+    <img alt="List Proffys" title="List Proffys" src="images/mobile_6.jpg" width="200px" />
+</div>
+<p align="center">Home, Be a Teacher and List Proffys</p>
+<hr>
+
+<div align="center">
+    <img alt="Favorites" title="Favorites" src="images/mobile_7.jpg" width="200px" />
+</div>
+<p align="center">Favorites</p>
+<hr>

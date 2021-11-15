@@ -1,10 +1,9 @@
-const API_URL = `192.168.0.26:8000`
+const API_URL = `192.168.0.17:8000`
 
 const baseUrl = `http://${ API_URL }/api/nlw2/`
 
-// http://192.168.0.20:8000/api/nlw2/classes/?filter_classes&subject=5&week_day=2&time=10:00
 
-async function postJSONApi(route: string, formData: FormData, auth='') {
+async function postJSONApi(route: string, formData: {}, auth='') {
     return fetch(
         baseUrl + route,
         {

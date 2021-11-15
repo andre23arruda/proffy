@@ -4,7 +4,7 @@
 
 {% block style %}
     {{ block.super }}
-    <link rel="shortcut icon" href="{% static 'images/django.svg' %}" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
 
     <style>
         html.dark {
@@ -52,4 +52,10 @@
         }
 
     </style>
+{% endblock %}
+
+{% block branding %}
+    <a href='/api'>
+        <img src="{% static 'images/django.svg' %}" width="40" alt="Django Icon" style="padding: 5px;">
+    </a>
 {% endblock %}

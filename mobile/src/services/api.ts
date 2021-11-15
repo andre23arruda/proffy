@@ -1,8 +1,8 @@
-const ROTA_API = `192.168.0.20`
+const API_URL = `192.168.0.17:8000`
 
-const baseUrl = `http://${ ROTA_API }:8000/api/nlw2/`
+const baseUrl = `http://${ API_URL }/api/nlw2/`
 
-async function postApi(route: string, formData: FormData, auth='') {
+async function postApi(route: string, formData: {}, auth='') {
     return fetch(
         baseUrl + route,
         {

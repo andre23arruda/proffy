@@ -1,18 +1,32 @@
-import React, { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FiBookOpen, FiMonitor } from 'react-icons/fi'
 
-import { title } from '../../utils'
-
+// images and styles
 import logoImg from '../../assets/logo.svg'
 import teachersImg from '../../assets/teachers.svg'
 import './Home.css'
 
+// custom hooks
+import useTitlePage from '../../hooks/useTitlePage'
+
+// utils
+import { getApi } from '../../services/api'
+
 function Home() {
+    const [connections, setConnections] = useState(0)
+    useTitlePage('Home')
 
-    useEffect(() => title(document, 'Home'), [])
+    async function loadConnections() {
+        const response = await getApi('connections/')
+        setConnections(response.total)
+    }
 
-  	return (
+    useEffect(() => {
+        loadConnections()
+    }, [])
+
+    return (
         <div id="page-home">
             <main>
                 <div>
@@ -37,11 +51,10 @@ function Home() {
                     </Link>
                 </div>
 
-                <span>Total de 90 conexões realizadas 💜</span>
+                <span>Total de { connections } conexões realizadas 💜</span>
             </footer>
-
         </div>
-  	)
+    )
 }
 
 export default Home

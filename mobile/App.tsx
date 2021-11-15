@@ -1,25 +1,25 @@
 import React from 'react'
-import Routes from './src/routes'
+import AppScreens from './src/routes'
 import AppLoading from 'expo-app-loading'
-import { useFonts, Roboto_400Regular,  Roboto_500Medium } from '@expo-google-fonts/roboto';
-import { Ubuntu_500Medium, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu';
+import { useFonts, Roboto_400Regular,  Roboto_500Medium } from '@expo-google-fonts/roboto'
+import { Ubuntu_300Light, Ubuntu_500Medium, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu'
 
 
 export default function App() {
 
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-    Roboto_500Medium,
-    Ubuntu_500Medium,
-    Ubuntu_700Bold
-  })
+	let [fontsLoaded] = useFonts({
+		Roboto_400Regular,
+		Roboto_500Medium,
+		Ubuntu_300Light,
+		Ubuntu_500Medium,
+		Ubuntu_700Bold
+	})
 
-  if (!fontsLoaded) {
-    return <AppLoading />
-  }
+	if (!fontsLoaded) {
+		return <AppLoading />
+	}
 
-  return (
-    <Routes />
-
-  )
+	return (
+		<AppScreens />
+	)
 }

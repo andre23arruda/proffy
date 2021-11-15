@@ -16,6 +16,14 @@ header .header-logo {
 	justify-content: space-between;
 }
 
+header .header-logo a {
+	transition: 0.2s;
+}
+
+header .header-logo a:hover {
+	transform: scale(1.25)
+}
+
 header .header-title {
 	width: 100%;
 	max-width: 800px;

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useMemo, useState } from 'react'
+import { ChangeEvent, useEffect, useMemo, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
@@ -8,11 +8,11 @@ import 'react-dropdown-now/style.css'
 import { FiAlertCircle, FiCamera, FiCheckCircle } from 'react-icons/fi'
 
 import { getApi, postFormDataApi } from '../../services/api'
-import { title } from '../../utils'
 
 import './CreateClass.css'
 import Header from '../../components/Header/Header'
 import AvailableTime from '../../components/AvailableTime/AvailableTime'
+import useTitlePage from '../../hooks/useTitlePage'
 
 interface ScheduleProps {
 	week_day: number
@@ -30,17 +30,17 @@ function CreateClass() {
 
     const history = useHistory()
 
-    useEffect(() => title(document, 'Cadastro'), [])
+    useTitlePage('Cadastro')
 
     const [name, setName] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [whatsapp, setWhatsapp] = useState<string>('')
     const [bio, setBio] = useState<string>('')
-    const [subject, setSubject] = useState<string>('')
+    const [subject, setSubject] = useState<string>('1')
     const [subjectList, setSubjectList] = useState<SubjectProps[]>([])
     const [cost, setCost] = useState<string>('')
-    const [schedule_info, setScheduleInfo] = useState<ScheduleProps[]>([{
-        week_day: 0,
+    const [scheduleInfo, setScheduleInfo] = useState<ScheduleProps[]>([{
+        week_day: 1,
         time_start: '08:00',
         time_end: '12:00',
     }])
@@ -73,7 +73,7 @@ function CreateClass() {
     function addScheduleInfo(event: any) {
         event.preventDefault()
         setScheduleInfo([
-            ...schedule_info, {
+            ...scheduleInfo, {
             week_day: 0,
             time_start: '08:00',
             time_end: '12:00',
@@ -94,7 +94,7 @@ function CreateClass() {
             bio,
             subject,
             cost,
-            schedule_info: JSON.stringify(schedule_info),
+            scheduleInfo: JSON.stringify(scheduleInfo),
         }
 
         const response = await postFormDataApi('classes/', data)
@@ -115,7 +115,7 @@ function CreateClass() {
         loadSubjectList()
     }, [])
 
-  	return (
+    return (
 
         <div id="create-class-page">
             <Header
@@ -144,7 +144,7 @@ function CreateClass() {
 
                         <div className="field">
                             <label htmlFor="whatsapp">Whatsapp <span>(Somente números)</span></label>
-                            <input type="email" name="whatsapp" id="whatsapp" onChange={ event => handleSetWhatsapp(event.target.value) }/>
+                            <input type="tel" name="whatsapp" id="whatsapp" onChange={ event => handleSetWhatsapp(event.target.value) }/>
                         </div>
 
                         <div className="field-group">
@@ -182,7 +182,7 @@ function CreateClass() {
                         <div className="field">
                             <label htmlFor="cost">Custo da sua hora por aula <span>(em R$)</span>
                             </label>
-                            <input type="text" name="cost" id="cost" onChange={ event => handleSetCost(event.target.value) }/>
+                            <input type="number" name="cost" id="cost" onChange={ event => handleSetCost(event.target.value) }/>
                         </div>
 
                     </fieldset>
@@ -197,11 +197,11 @@ function CreateClass() {
                             </h2>
                         </legend>
 
-                        { schedule_info.map((schedule, index) =>
+                        { scheduleInfo.map((schedule, index) =>
                             <AvailableTime
                                 index={ index }
-                                schedule_info={schedule_info}
-                                setScheduleInfo={setScheduleInfo}
+                                scheduleInfo={ scheduleInfo }
+                                setScheduleInfo={ setScheduleInfo }
                                 key={ index }
                             />
                         )}
@@ -244,7 +244,7 @@ function CreateClass() {
                 </div>
             </CSSTransition>
         </div>
-  	)
+    )
 }
 
 export default CreateClass

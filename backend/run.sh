@@ -1,8 +1,8 @@
 #!/bin/bash
-# run with `. activate_venv.sh`
+# run with `. run.sh`
 PWD=`pwd`
 
-activate () {
+run () {
     if [ "$(uname)" == "Darwin" ]; then
         . $PWD/venv/bin/activate
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
@@ -14,6 +14,8 @@ activate () {
     fi
 
     printf "\n Virtual enviroment activated. \n\n Use 'deactivate' to close it. \n\n\n"
+
+    python runserver.py
 }
 
-activate
+run

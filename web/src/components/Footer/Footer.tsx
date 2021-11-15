@@ -1,17 +1,10 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { FiLogIn } from 'react-icons/fi'
-
-import { title } from '../../utils'
-
+// images and styles
 import logoImg from '../../assets/logo-2.svg'
 import './Footer.css'
 
 function Footer() {
 
-    useEffect(() => title(document, 'Footer'), [])
-
-  	return (
+    return (
         <div id="footer">
             <div className="content">
                 <footer>
@@ -20,7 +13,7 @@ function Footer() {
             </div>
 
         </div>
-  	)
+    )
 }
 
 export default Footer

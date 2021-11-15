@@ -2,6 +2,9 @@ import React, { Dispatch, SetStateAction } from 'react'
 
 import { Dropdown } from 'react-dropdown-now'
 
+// utils
+import { weekDays } from '../../utils'
+
 
 interface ScheduleProps {
 	week_day: number
@@ -11,53 +14,58 @@ interface ScheduleProps {
 
 interface AvailableTimeProps {
     index: number,
-    schedule_info: ScheduleProps[],
+    scheduleInfo: ScheduleProps[],
     setScheduleInfo: Dispatch<SetStateAction<ScheduleProps[]>>
 }
 
 
 const AvailableTime: React.FC<AvailableTimeProps> = (props) => {
     function handleSetWeekDay(selectedOption: any){
-        props.schedule_info[props.index].week_day = parseInt(selectedOption.value)
-        props.setScheduleInfo(props.schedule_info)
+        props.scheduleInfo[props.index].week_day = parseInt(selectedOption.value)
+        props.setScheduleInfo(props.scheduleInfo)
     }
     function handleSetTimeStart(value: string){
-        props.schedule_info[props.index].time_start = value
-        props.setScheduleInfo(props.schedule_info)
+        props.scheduleInfo[props.index].time_start = value
+        props.setScheduleInfo(props.scheduleInfo)
     }
     function handleSetTimeEnd(value: string){
-        props.schedule_info[props.index].time_end = value
-        props.setScheduleInfo(props.schedule_info)
+        props.scheduleInfo[props.index].time_end = value
+        props.setScheduleInfo(props.scheduleInfo)
     }
 
     return (
         <>
         { props.index > 0 && <hr />}
+
         <div className="field-group">
             <div className="field no-margin">
                 <label htmlFor="week_day">Dia da semana</label>
                 <Dropdown
                     placeholder="Select an option"
-                    options={[
-                        { label: 'Segunda', value: '1' },
-                        { label: 'Terça',   value: '2' },
-                        { label: 'Quarta',  value: '3' },
-                        { label: 'Quinta',  value: '4' },
-                        { label: 'Sexta',   value: '5' },
-                    ]}
+                    options={ weekDays }
                     value="1"
                     onSelect={(value) => handleSetWeekDay(value)}
                 />
             </div>
 
             <div className="field no-margin">
-                <label htmlFor="time_start">Das</label>
-                <input type="text" placeholder="08:00" onChange={ event => handleSetTimeStart(event.target.value) }/>
+                <label>Das</label>
+                <input
+                    style={{ textAlign: 'center' }}
+                    type="time"
+                    placeholder="08:00"
+                    onChange={ event => handleSetTimeStart(event.target.value) }
+                />
             </div>
 
             <div className="field no-margin">
-                <label htmlFor="time_end">Até</label>
-                <input type="text"  placeholder="12:00" onChange={ event => handleSetTimeEnd(event.target.value) }/>
+                <label>Até</label>
+                <input
+                    style={{ textAlign: 'center' }}
+                    type="time"
+                    placeholder="12:00"
+                    onChange={ event => handleSetTimeEnd(event.target.value) }
+                />
             </div>
         </div>
         </>

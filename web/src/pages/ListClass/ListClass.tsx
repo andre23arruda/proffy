@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 import { Dropdown } from 'react-dropdown-now'
 import 'react-dropdown-now/style.css'
 
-import { FaWhatsapp } from 'react-icons/fa'
-
-import { getApi } from '../../services/api'
-import { isValidTime, title } from '../../utils'
+import { getApi, postJSONApi } from '../../services/api'
+import { isValidTime, weekDays } from '../../utils'
 
 import './ListClass.css'
 import Header from '../../components/Header/Header'
+import { FiMail } from 'react-icons/fi'
 
+// custom hooks
+import useTitlePage from '../../hooks/useTitlePage'
 
 interface ScheduleProps {
 	id: number,
+    teacher: number,
     subject_name: string,
     teacher_name: string,
     teacher_email: string,
@@ -31,9 +32,7 @@ interface SubjectProps {
 
 
 function ListClass() {
-
-    useEffect(() => title(document, 'Cadastro'), [])
-    const history = useHistory()
+    useTitlePage('Lista de Proffys')
 
     const [timeStart, setTimeStart] = useState<string>('08:00')
     const [subject, setSubject] = useState<string>('1')
@@ -50,6 +49,20 @@ function ListClass() {
     }
     function handleSetWeekDay(selectedOption: any){
         setWeekDay(selectedOption.value)
+    }
+    function emailBody(schedule: ScheduleProps) {
+        const newLine = '%0D%0A'
+        const subject = 'Marcar aula com Proffy'
+        const body = `${ schedule.teacher_name }, desejo marcar uma aula.
+            ${ newLine }${ weekDays[Number(weekDay) - 1].label } a partir de ${ timeStart }.
+            ${ newLine }
+            ${ newLine }Aguardo seu retorno.
+        `
+        return `mailto:${ schedule.teacher_email }?subject=${ subject }&body=${ body }`
+    }
+    async function handleContact(schedule: ScheduleProps) {
+        await postJSONApi('connections/', { teacher: schedule.teacher })
+        return
     }
 
     async function loadClasses() {
@@ -76,11 +89,11 @@ function ListClass() {
     }, [timeStart, subject, weekDay])
 
 
-  	return (
+    return (
 
         <div id="list-class-page">
             <Header
-                title={ 'Esses são os proffys disponíveis' }
+                title={ 'Esses são os Proffys disponíveis' }
             />
 
             <div className="content">
@@ -100,13 +113,7 @@ function ListClass() {
                             <label className="purple-text" htmlFor="week_day">Dia da semana</label>
                             <Dropdown
                                 placeholder="Select an option"
-                                options={[
-                                    { label: 'Segunda', value: '1' },
-                                    { label: 'Terça',   value: '2' },
-                                    { label: 'Quarta',  value: '3' },
-                                    { label: 'Quinta',  value: '4' },
-                                    { label: 'Sexta',   value: '5' },
-                                ]}
+                                options={ weekDays }
                                 value="1"
                                 onSelect={(value) => handleSetWeekDay(value)}
                             />
@@ -114,7 +121,14 @@ function ListClass() {
 
                         <div className="field no-margin">
                             <label className="purple-text" htmlFor="time_start">Horário</label>
-                            <input type="text" name="time_start" id="time_start" placeholder="08:00" onChange={ event => handleTimeStart(event.target.value) }/>
+                            <input
+                                type="time"
+                                name="time_start"
+                                id="time_start"
+                                style={{ width: '100%', textAlign: 'center' }}
+                                value={ timeStart }
+                                onChange={ event => handleTimeStart(event.target.value) }
+                            />
                         </div>
                     </div>
                 </form>
@@ -124,7 +138,7 @@ function ListClass() {
                         schedule_info.map((schedule) => (
                             <div className="card" key={ schedule.id }>
                                 <header>
-                                    <img src={ schedule.teacher_avatar } alt="Teacher" />
+                                    <img src={ schedule.teacher_avatar } alt={ schedule.teacher_name } />
 
                                     <div>
                                         <h2>{ schedule.teacher_name }</h2>
@@ -142,35 +156,38 @@ function ListClass() {
                                         <strong className="purple-text-strong">R$ { schedule.cost }</strong>
                                     </div>
 
-                                    <button className="btn btn-green">
-                                        <FaWhatsapp size={ 20 } />
-                                        &nbsp; Entrar em contato
-                                    </button>
+                                    <a
+                                        onClick={ () => handleContact(schedule) }
+                                        className="email-link"
+                                        href={ emailBody(schedule) }
+                                    >
+                                        <button className="btn btn-green">
+                                            <FiMail size={ 20 } />
+                                            &nbsp; Entrar em contato
+                                        </button>
+                                    </a>
                                 </footer>
 
                             </div>
-                        ))
-                     :
-                        <div className="cards-group">
-                            <div className="card">
-                                <header>
-                                    <h2>Oops!</h2>
-                                </header>
+                        )) : (
+                            <div className="cards-group">
+                                <div className="card">
+                                    <header>
+                                        <h2>Oops!</h2>
+                                    </header>
 
-                                <main>
-                                    <p>Não há aulas cadastradas</p>
-                                </main>
+                                    <main>
+                                        <p>Não há aulas cadastradas</p>
+                                    </main>
+                                </div>
                             </div>
-                        </div>
+                        )
                     }
-
                 </div>
-
-
             </div>
 
         </div>
-  	)
+    )
 }
 
 export default ListClass
