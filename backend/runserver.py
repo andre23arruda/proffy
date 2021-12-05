@@ -1,4 +1,4 @@
-import os, socket, subprocess, sys
+import socket, subprocess
 
 PORT = '8000'
 
@@ -7,13 +7,6 @@ def get_ip_address():
     hostname = socket.gethostname()
     ip_address = socket.gethostbyname(hostname)
     return ip_address
-
-
-def get_python_path():
-    '''Return venv python path'''
-    path_list = sys.path
-    path_filtered = filter(lambda path: path.endswith(r'\venv'), path_list)
-    return next(path_filtered, None)
 
 
 def put_ip_in_api_file(folder: str):
@@ -36,10 +29,7 @@ def put_ip_in_api_file(folder: str):
 
 def main():
     '''Run'''
-    if os.name == 'posix': # linux/mac
-        subprocess.call(fr'{ get_python_path() }\bin\python manage.py runserver { get_ip_address() }:{ PORT }')
-    else: # windows
-        subprocess.call(fr'{ get_python_path() }\Scripts\python manage.py runserver { get_ip_address() }:{ PORT }')
+    subprocess.call(f'python manage.py runserver { get_ip_address() }:{ PORT }', shell=True)
 
 
 if __name__ == '__main__':
