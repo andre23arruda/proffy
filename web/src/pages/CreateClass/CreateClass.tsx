@@ -103,6 +103,8 @@ function CreateClass() {
             setTimeout(() => {
                 history.push('/')
             }, 2000)
+        } else {
+            alert('ERRO ao cadastrar! Verifique as informações.')
         }
     }
 
