@@ -54,8 +54,8 @@ function CreateClass() {
     function handleSetEmail(value: string){
         setEmail(value)
     }
-    function handleSetWhatsapp(whatsapp: string){
-        setWhatsapp(email)
+    function handleSetWhatsapp(value: string){
+        setWhatsapp(value)
     }
     function handleSetAvatar(event: ChangeEvent<HTMLInputElement> ) {
 		if (!event.target.files) return
