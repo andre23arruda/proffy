@@ -1,9 +1,7 @@
-const API_URL = `192.168.0.17:8000`
+const API_URL = process.env.REACT_APP_API_URL
+const baseUrl = `${ API_URL }/api/nlw2/`
 
-const baseUrl = `http://${ API_URL }/api/nlw2/`
-
-
-async function postJSONApi(route: string, formData: {}, auth='') {
+export async function postJSONApi(route: string, formData: {}, auth='') {
     return fetch(
         baseUrl + route,
         {
@@ -20,8 +18,8 @@ async function postJSONApi(route: string, formData: {}, auth='') {
     .then(response => response.json())
 }
 
-async function postFormDataApi(route: string, data: any, auth='') {
 
+export async function postFormDataApi(route: string, data: any, auth='') {
     const formData = new FormData()
     for (var prop in data) {
         formData.append(prop, data[prop])
@@ -42,14 +40,13 @@ async function postFormDataApi(route: string, data: any, auth='') {
 }
 
 
-async function getApi(route: string, auth='', base=true) {
+export async function getApi(route: string, auth='', base=true) {
     const url =  base ? baseUrl + route : route
-    return fetch(url)
-    .then(response => response.json())
+    return fetch(url).then(response => response.json())
 }
 
 
-async function deleteApi(route: string, auth='') {
+export async function deleteApi(route: string, auth='') {
     return fetch(
         baseUrl + route,
         {
@@ -64,7 +61,7 @@ async function deleteApi(route: string, auth='') {
 }
 
 
-async function putApi(route: string, formData: FormData, auth='') {
+export async function putApi(route: string, formData: FormData, auth='') {
     return fetch(
         baseUrl + route,
         {
@@ -80,5 +77,3 @@ async function putApi(route: string, formData: FormData, auth='') {
     )
     .then(response => response.json())
 }
-
-export { getApi, postJSONApi, postFormDataApi, deleteApi, putApi }

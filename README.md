@@ -35,13 +35,14 @@ Ter instalado:
 - [Yarn](https://classic.yarnpkg.com/en/docs/install/)
 
 ### Backend
-#### Primeiro: renomear arquivo com variáveis de ambiente
--  **Renomear _backend/setup/env_example.py_ para _backend/setup/env.py_**
-
-#### Segundo: no terminal, rodar
+#### No terminal, rodar:
 ```sh
 # Entrar na pasta dos arquivos do backend
 cd backend
+
+# Renomear env_example.py para env.py
+cp setup/env_example.py setup/env.py
+# ADICIONE OS VALORES CORRETOS
 
 # Criar um ambiente virtual
 python -m venv venv
@@ -60,11 +61,8 @@ python manage.py migrate
 python manage.py loaddata school_subjects
 
 # Rodar backend
-python runserver.py
+. run.sh
 ```
-<p align="center">
-    <img alt="API 1" src="./images/api_1.png" width="500px" />
-</p>
 
 ### OBS:
 Usei o *Cloudinary* para salvar as imagens dos professores, mas não é necessário.
@@ -72,7 +70,7 @@ Usei o *Cloudinary* para salvar as imagens dos professores, mas não é necessá
 ### Frontend
 #### No terminal, rodar
 ```sh
-# Entrar na pasta dos arquivos do frontend
+# Entrar na pasta dos arquivos do projeto frontend
 cd web
 
 # Instalar os pacotes necessários
